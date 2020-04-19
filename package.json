@@ -4,6 +4,10 @@
   "description": "cyberpunk hide and seek with RPG elements",
   "main": "index.js",
   "scripts": {
+    "start": "node server/index.js",
+    "start-dev": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch",
+    "build": "webpack -p",
     "test": "test"
   },
   "repository": {
