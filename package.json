@@ -1,6 +1,6 @@
 {
   "name": "gyrosyncopation",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "description": "cyberpunk hide and seek with RPG elements",
   "main": "index.js",
   "scripts": {
@@ -38,11 +38,12 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.5.2",
+    "nodemon": "^2.0.3",
     "style-loader": "^1.1.4",
+    "url-loader": "^4.1.0",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "live-server": "^1.2.1",
-    "nodemon": "^2.0.3"
+    "webpack-cli": "^3.3.11"
   }
 }
