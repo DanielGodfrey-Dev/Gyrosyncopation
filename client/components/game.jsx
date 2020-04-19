@@ -7,9 +7,10 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
-            selfNode: [0,0]
-
+            selfNode: [10,10],
+            friendNodes: [
+                [90,30]
+            ]
         }
     }
 
@@ -17,8 +18,8 @@ class Game extends React.Component {
 
         return (
             <div className={styles.gameArea}>
-                <Self />
-                <Friend />
+                <Self location={this.state.selfNode}/>
+                <Friend location={this.state.friendNodes[0]}/>
             </div>
         )
     }
