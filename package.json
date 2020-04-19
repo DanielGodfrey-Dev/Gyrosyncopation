@@ -1,6 +1,6 @@
 {
   "name": "gyrosyncopation",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "cyberpunk hide and seek with RPG elements",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "build": "webpack -p",
-    "test": "test"
+    "test": "node server/liveServer.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,8 @@
     "css-loader": "^3.5.2",
     "style-loader": "^1.1.4",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "live-server": "^1.2.1",
+    "nodemon": "^2.0.3"
   }
 }
