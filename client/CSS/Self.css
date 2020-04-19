@@ -1,0 +1,7 @@
+.node {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: hotpink;
+    border: 1px solid black;
+}

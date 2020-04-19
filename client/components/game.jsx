@@ -1,11 +1,14 @@
 import React from 'react';
+import styles from '../CSS/Game.css';
+import Self from './Self.jsx';
+import Friend from './Friend.jsx';
 
 class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
 
-            selfNode: null
+            selfNode: [0,0]
 
         }
     }
@@ -13,7 +16,10 @@ class Game extends React.Component {
     render() {
 
         return (
-            <div>the matrix is expanding...selfNode preparing.</div>
+            <div className={styles.gameArea}>
+                <Self />
+                <Friend />
+            </div>
         )
     }
 
