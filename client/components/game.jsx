@@ -24,10 +24,28 @@ class Game extends React.Component {
             friendNodes: [getRandomLocation()]
         }
         this.onKeyDown = this.onKeyDown.bind(this);
+        this.checkGeoFence = this.checkGeoFence.bind(this);
+        this.gameOver = this.gameOver.bind(this);
     }
 
     componentDidMount() {
         document.onkeydown = this.onKeyDown;
+    }
+
+    componentDidUpdate() {
+        // console.log(this.state.selfNode);
+        this.checkGeoFence();
+    }
+
+    checkGeoFence() {
+        let selfNode = this.state.selfNode;
+        if (selfNode[0] >= 98 || selfNode[1] >= 96 || selfNode[0] <= -3 || selfNode[1] <= -3) {
+            this.gameOver();
+        }
+    }
+
+    gameOver() {
+        alert('Node Destruction Through the Geofence. Game Over.')
     }
 
     onKeyDown(e) {
