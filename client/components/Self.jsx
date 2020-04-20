@@ -13,8 +13,7 @@ const Self = ({ location, interaction }) => {
         left: `${coordinates.x}%`,
         top: `${coordinates.y}%`
     }
-    console.log(location[0]);
-    console.log(interaction);
+
 
     return (
         <div className={interaction ? styles.interface : styles.node} style={style}></div>
