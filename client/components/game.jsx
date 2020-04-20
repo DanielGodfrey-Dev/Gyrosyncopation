@@ -6,7 +6,7 @@ import Friend from './Friend.jsx';
 const getRandomLocation = () => {
 
     let min = 0;
-    let max = 97;
+    let max = 95;
 
     let x = Math.random() * (max - min) + min; 
     let y = Math.random() * (max - min) + min;
@@ -14,15 +14,18 @@ const getRandomLocation = () => {
     return [x, y];
 };
 
+let initialState = {
+    keypadDirection: '',
+
+    selfNode: [0,0],
+    friendNodes: [getRandomLocation()]
+}
+
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            keypadDirection: '',
+        this.state = initialState;
 
-            selfNode: [0,0],
-            friendNodes: [getRandomLocation()]
-        }
         this.onKeyDown = this.onKeyDown.bind(this);
         this.checkGeoFence = this.checkGeoFence.bind(this);
         this.gameOver = this.gameOver.bind(this);
@@ -45,7 +48,9 @@ class Game extends React.Component {
     }
 
     gameOver() {
-        alert('Node Destruction Through the Geofence. Game Over.')
+        alert('Node Destruction Through the Geofence. Game Over.');
+        this.setState(initialState);
+        this.setState({ friendNodes: [getRandomLocation()]})
     }
 
     onKeyDown(e) {
