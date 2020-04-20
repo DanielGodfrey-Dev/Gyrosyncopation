@@ -3,9 +3,14 @@ import styles from '../CSS/Friend.css';
 
 const Friend = ({ location }) => {
     
+    const coordinates = {
+        x: location[0],
+        y: location[1]
+    }
+
     const style = {
-        left: `${location[0]}%`,
-        top: `${location[1]}%`
+        left: `${coordinates.x}%`,
+        top: `${coordinates.y}%`
     }
 
     return (
