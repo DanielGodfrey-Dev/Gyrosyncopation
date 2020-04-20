@@ -6,3 +6,12 @@
     border: 1px solid black;
     z-index: 2;
 }
+
+.interface {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(26, 241, 141);
+    border: 1px solid black;
+    z-index: 2;
+}
