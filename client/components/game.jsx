@@ -17,7 +17,8 @@ const getRandomLocation = () => {
 let initialState = {
     keypadDirection: '',
     selfNode: [0,0],
-    friendNodes: [getRandomLocation()]
+    friendNodes: [getRandomLocation()],
+    interaction: false
 }
 
 class Game extends React.Component {
@@ -28,7 +29,8 @@ class Game extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this);
         this.checkGeoFence = this.checkGeoFence.bind(this);
         this.gameOver = this.gameOver.bind(this);
-        this.interaction = this.interaction.bind(this);
+        this.interfaceStart = this.interfaceStart.bind(this);
+        this.interfaceFinish = this.interfaceFinish.bind(this);
     }
 
     componentDidMount() {
@@ -41,7 +43,8 @@ class Game extends React.Component {
         //always check to see if selfNode has broken Geo Fence
         console.log(this.state.selfNode, this.state.friendNodes);
         this.checkGeoFence();
-        this.interaction();
+        this.interfaceStart();
+        this.interfaceFinish();
     }
 
 
@@ -98,13 +101,25 @@ class Game extends React.Component {
 
 
     //________________selfNode can interact with other nodes!___________
-    interaction() {
+    interfaceStart() {
         let selfNode = this.state.selfNode;
         let friendNode = this.state.friendNodes[0];
 
-        if (selfNode[0] >= (friendNode[0] - 3) && selfNode[0] <= (friendNode[0] + 3) && selfNode[1] >= (friendNode[1] - 3) && selfNode[1] <= (friendNode[1] + 3)) {
+        if (selfNode[0] >= (friendNode[0] - 3) && selfNode[0] <= (friendNode[0] + 3) && selfNode[1] >= (friendNode[1] - 3) && selfNode[1] <= (friendNode[1] + 3) && this.state.interaction === false) {
             console.log('node immersive interfacing initiated...');
-        }
+            this.setState({ interaction: true })
+        } 
+    }
+        
+    interfaceFinish() {
+        let selfNode = this.state.selfNode;
+        let friendNode = this.state.friendNodes[0];
+
+        if (((friendNode[0] - 3) > selfNode[0] || (friendNode[0] + 3) < selfNode[0] || (friendNode[1] - 3) > selfNode[1] || (friendNode[1] + 3) < selfNode[1]) && this.state.interaction === true) {
+            console.log('node immersive interfacing finished...');
+            // this.setState({ selfNode: [friendNode[0] - 5, friendNode[1] - 5] });
+            this.setState({ interaction: false })
+        } 
     }
 
 
@@ -112,7 +127,7 @@ class Game extends React.Component {
 
         return (
             <div className={styles.gameArea}>
-                <Self location={this.state.selfNode}/>
+                <Self id='self' location={this.state.selfNode} interaction={this.state.interaction}/>
                 <Friend location={this.state.friendNodes[0]}/>
             </div>
         )
