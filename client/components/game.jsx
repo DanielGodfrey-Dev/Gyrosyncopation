@@ -58,7 +58,7 @@ class Game extends React.Component {
     }
 
     gameOver() {
-        alert('Node Destruction Through the Geofence. Game Over.');
+        alert('Node Destruction via Geofence. Game Over.');
         //________________reset game____________________________________
         this.setState(initialState);
         this.setState({ friendNodes: [getRandomLocation()]})
