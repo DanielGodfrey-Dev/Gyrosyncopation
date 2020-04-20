@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../CSS/Game.css';
 import Self from './Self.jsx';
 import Friend from './Friend.jsx';
+import GameOver from './GameOver.jsx';
 
 const getRandomLocation = () => {
 
@@ -19,7 +20,8 @@ let initialState = {
     selfNode: [0,0],
     friendNodes: [getRandomLocation()],
     interfacingNode: null,
-    interaction: false
+    interaction: false,
+    gameOver: false
 }
 
 class Game extends React.Component {
@@ -59,10 +61,13 @@ class Game extends React.Component {
     }
 
     gameOver() {
-        alert('Node Destruction via Geofence. Game Over.');
+        this.setState(initialState);
+        this.setState({ gameOver: true })
         //________________reset game____________________________________
+        setTimeout(() => {
         this.setState(initialState);
         this.setState({ friendNodes: [getRandomLocation()]})
+        }, 1700);
         //______________________________________________________________
     }
     //__________________________________________________________________
@@ -122,7 +127,7 @@ class Game extends React.Component {
             this.setState({ interaction: false, interfacingNode: null })
         } 
     }
-
+    //________________...interfacing can initialize or complete_________
 
     render() {
 
@@ -130,7 +135,9 @@ class Game extends React.Component {
             <div className={styles.gameArea}>
                 <Self id='self' location={this.state.selfNode} interaction={this.state.interaction}/>
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
+                <GameOver gameOver={this.state.gameOver}/>
             </div>
+          
         )
     }
 
