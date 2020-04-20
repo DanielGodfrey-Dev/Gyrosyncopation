@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../CSS/Friend.css';
 
-const Friend = ({ location }) => {
+const Friend = ({ location, interaction }) => {
     
     const coordinates = {
         x: location[0],
@@ -14,7 +14,7 @@ const Friend = ({ location }) => {
     }
 
     return (
-        <div className={styles.node} style={style}></div>
+        <div className={interaction ? styles.interface : styles.node} style={style}></div>
     )
 }
 

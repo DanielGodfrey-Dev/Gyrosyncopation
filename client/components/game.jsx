@@ -46,7 +46,6 @@ class Game extends React.Component {
         this.checkGeoFence();
         this.interfaceStart();
         this.interfaceFinish();
-        console.log(this.state.interfacingNode);
     }
 
 
@@ -130,7 +129,7 @@ class Game extends React.Component {
         return (
             <div className={styles.gameArea}>
                 <Self id='self' location={this.state.selfNode} interaction={this.state.interaction}/>
-                <Friend location={this.state.friendNodes[0]}/>
+                <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
             </div>
         )
     }
