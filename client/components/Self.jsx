@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../CSS/Self.css';
-import classNames from 'classNames';
 
 const Self = ({ location, interaction }) => {
     
@@ -13,7 +12,6 @@ const Self = ({ location, interaction }) => {
         left: `${coordinates.x}%`,
         top: `${coordinates.y}%`
     }
-
 
     return (
         <div className={interaction ? styles.interface : styles.node} style={style}></div>
