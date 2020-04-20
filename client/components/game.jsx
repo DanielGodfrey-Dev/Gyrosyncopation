@@ -36,7 +36,7 @@ class Game extends React.Component {
     }
 
     componentDidUpdate() {
-        // console.log(this.state.selfNode);
+        console.log(this.state.selfNode, this.state.friendNodes);
         this.checkGeoFence();
     }
 
