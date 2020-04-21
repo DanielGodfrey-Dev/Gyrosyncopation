@@ -9,6 +9,8 @@ import GameWin from './GameWin.jsx';
 import JSONbrain from './JSONbrain.jsx';
 import Cooperation from './Cooperation.jsx';
 
+import axios from 'axios';
+
 
 const getRandomLocation = () => {
 
@@ -51,10 +53,10 @@ let initialState = {
     //interactive node
     friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()],
     friendNodeStats: {
-        name: 'Kim',
-        friendNodeProcessor: getRandomStat(),
-        friendNodeRAM: getRandomStat(),
-        friendNodeQuantum: getRandomStat()
+        name: '',
+        friendNodeProcessor: null,
+        friendNodeRAM: null,
+        friendNodeQuantum: null
     },
 
     nameReveal: false,
@@ -92,6 +94,14 @@ class Game extends React.Component {
     componentDidMount() {
         //initialize keypress functionality
         document.onkeydown = this.onKeyDown;
+        axios.get('/nodes')
+        .then((nodes) => {
+          console.log('data set: ', nodes.data);
+          this.setState({friendNodeStats: nodes.data})
+        })
+        .catch((err) => {
+          console.log('something went awry');
+        })
     }
 
 

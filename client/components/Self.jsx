@@ -24,7 +24,7 @@ const Self = ({ location, interaction, enquireName, gyrosyncopate, JSONscan, JSO
     return (
 
         <div className={interaction ? styles.interface : styles.node} style={style}>
-            <img src='../../public/selfNode.png'></img>
+            <img src='http://localhost:3099/selfNode.png'></img>
             {interaction ? <div><Interface enquireName={enquireName} gyrosyncopate={gyrosyncopate} JSONscan={JSONscan} JSONremaining={JSONremaining} cooperation={cooperation}/>
             <h3 style={{color: 'white'}}>{greeting}</h3></div> : null}
         </div>
