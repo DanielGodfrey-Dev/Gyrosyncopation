@@ -226,7 +226,6 @@ class Game extends React.Component {
 
         if (Math.abs(selfNodeProcessor - friendNodeProcessor) >= 3) {
             life = false;
-            console.log(Math.abs(selfNodeProcessor - friendNodeProcessor));
         }
 
         if (Math.abs(selfNodeRAM - friendNodeRAM) >= 3) {
@@ -237,7 +236,6 @@ class Game extends React.Component {
             life = false;
         }
 
-        console.log(life);
         if (!life) {
             this.gyroFail();
         } else if (life) {

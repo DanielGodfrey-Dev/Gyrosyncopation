@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 export default function GyroFail({ gyroFail, character }) {
   let open = gyroFail;
 
-  let friendNode = character;
+  console.log(character);
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,8 +28,8 @@ export default function GyroFail({ gyroFail, character }) {
       >
         <DialogTitle className={styles.gyroFail} id="alert-dialog-title">{"GYROSYNCOPATION FAILURE"}</DialogTitle>
         <DialogContent className={styles.gyroFail}>
-          <DialogContentText className={styles.gyroFail} style={{fontWeight: 'bold'}} id="alert-dialog-description">
-            GYROSYNCOPATION failed. Catastrophic memory loss. Processor shutting down. Quantum Matrix slipping...
+          <DialogContentText className={styles.gyroFail} id="alert-dialog-description">
+            GYROSYNCOPATION FAILED. Catastrophic memory loss. Processor shutting down. Quantum Matrix slipping...
             You have failed to reclaim your humanity. All is lost. You will be erased from the Titan-Matrix_Bloc for eternity.
           </DialogContentText>
         </DialogContent>
