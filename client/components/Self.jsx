@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../CSS/Self.css';
 import Interface from './Interface.jsx';
 
-const Self = ({ location, interaction, enquireName, gyrosyncopate }) => {
+const Self = ({ location, interaction, enquireName, gyrosyncopate, JSONscan, JSONremaining }) => {
 
     const coordinates = {
         x: location[0],
@@ -24,7 +24,8 @@ const Self = ({ location, interaction, enquireName, gyrosyncopate }) => {
     return (
 
         <div className={interaction ? styles.interface : styles.node} style={style}>
-            {interaction ? <div><Interface enquireName={enquireName} gyrosyncopate={gyrosyncopate}/>
+            <img src='../../public/selfNode.png'></img>
+            {interaction ? <div><Interface enquireName={enquireName} gyrosyncopate={gyrosyncopate} JSONscan={JSONscan} JSONremaining={JSONremaining}/>
             <h3 style={{color: 'white'}}>{greeting}</h3></div> : null}
         </div>
     )

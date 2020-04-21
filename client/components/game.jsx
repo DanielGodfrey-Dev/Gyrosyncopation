@@ -6,6 +6,7 @@ import GameOver from './GameOver.jsx';
 import FriendName from './FriendName.jsx';
 import GyroFail from './GyroFail.jsx';
 import GameWin from './GameWin.jsx';
+import JSONbrain from './JSONbrain.jsx';
 
 
 const getRandomLocation = () => {
@@ -60,7 +61,10 @@ let initialState = {
 
     gameOver: false,
     gyroFail: false,
-    gameWin: false
+    gameWin: false,
+
+    JSONbrain: false,
+    JSONremaining: 1
 }
 
 class Game extends React.Component {
@@ -75,6 +79,7 @@ class Game extends React.Component {
         this.interfaceFinish = this.interfaceFinish.bind(this);
         this.enquireName = this.enquireName.bind(this);
         this.gyrosyncopate = this.gyrosyncopate.bind(this);
+        this.JSONscan = this.JSONscan.bind(this);
     }
 
     componentDidMount() {
@@ -234,6 +239,15 @@ class Game extends React.Component {
         }
     }
 
+    JSONscan() {
+        this.setState({ JSONremaining: 0, JSONbrain: true });
+        console.log(this.state.interfacingNode);
+        setTimeout(() => {
+            this.setState({JSONbrain: false});
+            this.setState({ friendNodes: [getRandomLocation()]})
+        }, 5000);
+    }
+
     render() {
 
         return (
@@ -253,12 +267,16 @@ class Game extends React.Component {
                 interaction={this.state.interaction} 
                 enquireName={this.enquireName}
                 gyrosyncopate={this.gyrosyncopate}
+                JSONscan={this.JSONscan}
+                JSONremaining={this.state.JSONremaining}
                 />
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
                 
                 {this.state.nameReveal ? <FriendName nameReveal={this.state.nameReveal} friendName={this.state.interfacingNode.name}/> : <GameOver gameOver={this.state.gameOver}/>}
                 {this.state.gyroFail ? <GyroFail gyroFail={this.state.gyroFail} character={this.state.interfacingNode.name}/> : null}
                 {this.state.gameWin ? <GameWin gameWin={this.state.gameWin} character={this.state.interfacingNode.name}/> : null}
+                {this.state.JSONbrain ? <JSONbrain JSONbrain={this.state.JSONbrain} friendName={this.state.interfacingNode}/> : null}
+
 
 
                 </div>

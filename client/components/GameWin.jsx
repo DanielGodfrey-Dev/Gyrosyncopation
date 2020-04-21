@@ -16,8 +16,6 @@ const theme = createMuiTheme({
 export default function GameWin({ gameWin, character }) {
   let open = gameWin;
 
-  let friendNode = character;
-
   return (
     <ThemeProvider theme={theme}>
     <div>
@@ -29,7 +27,7 @@ export default function GameWin({ gameWin, character }) {
         <DialogTitle className={styles.gameWin} id="alert-dialog-title">{"GYROSYNCOPATION SUCCESS"}</DialogTitle>
         <DialogContent className={styles.gameWin}>
           <DialogContentText className={styles.gameWin} style={{fontWeight: 'bold'}} id="alert-dialog-description">
-            GYROSYNCOPATION succeeded. Your processor has never been so in tune with your Quantum Matrix. You are made whole.
+            GYROSYNCOPATION succeeded with {character}. Your processor has never been so in tune with your Quantum Matrix. You are made whole.
             The grim darkness of the Titan-Matrix_bloc resides from your RAM for the time being and a friendNode has been integrated
             into your circuitry. Congratulations. gyroSyncopate(selfNode, friendNode, zen);
           </DialogContentText>

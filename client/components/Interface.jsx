@@ -28,14 +28,18 @@ export default function Interface(props) {
 
   const handleJSON = () => {
     setAnchorEl(null);
-    // props.gyrosyncopate();
+    props.JSONscan();
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-    // props.gyrosyncopate();
   };
 
+  let disabled = false;
+
+  if (props.JSONremaining === 0) {
+    disabled = true;
+  }
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -70,7 +74,7 @@ export default function Interface(props) {
             </ListItemIcon>
             </MenuItem>
 
-            <MenuItem onClick={handleJSON}>
+            <MenuItem onClick={handleJSON} disabled={disabled}>
             <ListItemIcon className={styles.JSON}>
                 <KeyboardIcon fontSize="large" />
             <ListItemText primary="JSONbrain.scan()" />
