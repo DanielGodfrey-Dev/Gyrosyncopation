@@ -35,8 +35,8 @@ export default function JSONbrain({ JSONbrain, friendName }) {
         <DialogContent className={styles.JSONbrain}>
           <DialogContentText className={styles.JSONbrain} id="JSONbrainText">
             My Name is {friendName.name} and you now have access to my properties --._.._--->>...
-            Processor: {friendName.friendNodeProcessor}
-            Memory: {friendName.friendNodeRAM}
+            Processor: {friendName.friendNodeProcessor} ..___..
+            Memory: {friendName.friendNodeRAM} ..___..
             Quantum: {friendName.friendNodeQuantum}
           </DialogContentText>
         </DialogContent>

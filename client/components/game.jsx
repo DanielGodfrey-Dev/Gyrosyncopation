@@ -7,6 +7,7 @@ import FriendName from './FriendName.jsx';
 import GyroFail from './GyroFail.jsx';
 import GameWin from './GameWin.jsx';
 import JSONbrain from './JSONbrain.jsx';
+import Cooperation from './Cooperation.jsx';
 
 
 const getRandomLocation = () => {
@@ -62,6 +63,7 @@ let initialState = {
     interaction: false,
     interfacingNode: dummyNode,
     nameReveal: false,
+    cooperation: false,
 
     gameOver: false,
     gyroFail: false,
@@ -84,6 +86,7 @@ class Game extends React.Component {
         this.enquireName = this.enquireName.bind(this);
         this.gyrosyncopate = this.gyrosyncopate.bind(this);
         this.JSONscan = this.JSONscan.bind(this);
+        this.cooperation = this.cooperation.bind(this);
     }
 
     componentDidMount() {
@@ -252,6 +255,15 @@ class Game extends React.Component {
         }, 5000);
     }
 
+    cooperation() {
+        console.log('friendNode has features: ' + this.state.interfacingNode);
+        this.setState({ cooperation: true });
+        setTimeout(() => {
+            this.setState({cooperation: false});
+            this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
+        }, 5000);
+    }
+
     render() {
 
         return (
@@ -273,6 +285,7 @@ class Game extends React.Component {
                 gyrosyncopate={this.gyrosyncopate}
                 JSONscan={this.JSONscan}
                 JSONremaining={this.state.JSONremaining}
+                cooperation={this.cooperation}
                 />
                 {this.state.friendNodes.map((friendNode, i) =>
                 <Friend key={i} location={friendNode} interaction={this.state.interaction}/>)
@@ -282,7 +295,7 @@ class Game extends React.Component {
                 {this.state.gyroFail ? <GyroFail gyroFail={this.state.gyroFail} character={this.state.interfacingNode.name}/> : null}
                 {this.state.gameWin ? <GameWin gameWin={this.state.gameWin} character={this.state.interfacingNode.name}/> : null}
                 {this.state.JSONbrain ? <JSONbrain JSONbrain={this.state.JSONbrain} friendName={this.state.interfacingNode}/> : null}
-
+                {this.state.cooperation ? <Cooperation cooperation={this.state.cooperation} friendName={this.state.interfacingNode}/> : null}
 
 
                 </div>

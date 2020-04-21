@@ -21,6 +21,11 @@ export default function Interface(props) {
     props.enquireName();
   };
 
+  const handleCoop = () => {
+    setAnchorEl(null);
+    props.cooperation();
+  };
+
   const handleGyro = () => {
     setAnchorEl(null);
     props.gyrosyncopate();
@@ -71,6 +76,13 @@ export default function Interface(props) {
             <ListItemIcon className={styles.enquire}>
                 <KeyboardIcon fontSize="large" />
             <ListItemText primary="name.enquire()" />
+            </ListItemIcon>
+            </MenuItem>
+
+            <MenuItem className={styles.menu} onClick={handleCoop}>
+            <ListItemIcon className={styles.cooperation}>
+                <KeyboardIcon fontSize="large" />
+            <ListItemText primary="cooperation()" />
             </ListItemIcon>
             </MenuItem>
 
