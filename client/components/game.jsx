@@ -24,6 +24,10 @@ const getRandomStat = () => {
     return Math.ceil(Math.random() * 6);
 }
 
+const getRandomCheck = () => {
+    return (Math.floor(Math.random() * 10000) % 3)
+}
+
 let dummyNode = {
     name: '',
     nameReveal: false,
@@ -44,7 +48,7 @@ let initialState = {
     },
     
     //interactive node
-    friendNodes: [getRandomLocation()],
+    friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()],
     friendNodeStats: {
         name: 'Kim',
         friendNodeProcessor: getRandomStat(),
@@ -64,7 +68,7 @@ let initialState = {
     gameWin: false,
 
     JSONbrain: false,
-    JSONremaining: 1
+    JSONremaining: 2
 }
 
 class Game extends React.Component {
@@ -91,9 +95,10 @@ class Game extends React.Component {
     componentDidUpdate() {
         //always check to see if selfNode has broken Geo Fence
         // console.log(this.state.selfNode, this.state.friendNodes);
-        this.checkGeoFence();
-        this.interfaceStart();
-        this.interfaceFinish();
+        this.checkGeoFence()
+        this.interfaceStart(this.state.friendNodes[2]);
+        this.interfaceFinish(this.state.friendNodes[2]);
+        // console.log(this.state.interfacingNode)
     }
 
 
@@ -112,7 +117,7 @@ class Game extends React.Component {
         //________________reset game____________________________________
         setTimeout(() => {
         this.setState(initialState);
-        this.setState({ friendNodes: [getRandomLocation()]})
+        this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 3000);
         //______________________________________________________________
     }
@@ -124,7 +129,7 @@ class Game extends React.Component {
         //________________reset game____________________________________
         setTimeout(() => {
         this.setState(initialState);
-        this.setState({ friendNodes: [getRandomLocation()]})
+        this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 10000);
         //______________________________________________________________
     }
@@ -137,7 +142,7 @@ class Game extends React.Component {
         //________________reset game____________________________________
         setTimeout(() => {
         this.setState(initialState);
-        this.setState({ friendNodes: [getRandomLocation()]})
+        this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 20000);
         //______________________________________________________________
     }
@@ -177,9 +182,8 @@ class Game extends React.Component {
 
 
     //________________selfNode can interact with other nodes!___________
-    interfaceStart() {
+    interfaceStart(friendNode) {
         let selfNode = this.state.selfNode;
-        let friendNode = this.state.friendNodes[0];
 
         if (selfNode[0] >= (friendNode[0] - 3) && selfNode[0] <= (friendNode[0] + 3) && selfNode[1] >= (friendNode[1] - 3) && selfNode[1] <= (friendNode[1] + 3) && this.state.interaction === false) {
             console.log('node immersive interfacing initiated...');
@@ -187,9 +191,8 @@ class Game extends React.Component {
         } 
     }
         
-    interfaceFinish() {
+    interfaceFinish(friendNode) {
         let selfNode = this.state.selfNode;
-        let friendNode = this.state.friendNodes[0];
 
         if (((friendNode[0] - 3) > selfNode[0] || (friendNode[0] + 3) < selfNode[0] || (friendNode[1] - 3) > selfNode[1] || (friendNode[1] + 3) < selfNode[1]) && this.state.interaction === true) {
             console.log('node immersive interfacing finished...');
@@ -204,7 +207,7 @@ class Game extends React.Component {
         this.setState({ nameReveal: true });
         setTimeout(() => {
             this.setState({nameReveal: false});
-            this.setState({ friendNodes: [getRandomLocation()]})
+            this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 3000);
     }
 
@@ -240,11 +243,12 @@ class Game extends React.Component {
     }
 
     JSONscan() {
-        this.setState({ JSONremaining: 0, JSONbrain: true });
+        let minus = this.state.JSONremaining - 1;
+        this.setState({ JSONremaining: minus, JSONbrain: true });
         console.log(this.state.interfacingNode);
         setTimeout(() => {
             this.setState({JSONbrain: false});
-            this.setState({ friendNodes: [getRandomLocation()]})
+            this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 5000);
     }
 
@@ -270,7 +274,9 @@ class Game extends React.Component {
                 JSONscan={this.JSONscan}
                 JSONremaining={this.state.JSONremaining}
                 />
-                <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
+                {this.state.friendNodes.map((friendNode, i) =>
+                <Friend key={i} location={friendNode} interaction={this.state.interaction}/>)
+                }
                 
                 {this.state.nameReveal ? <FriendName nameReveal={this.state.nameReveal} friendName={this.state.interfacingNode.name}/> : <GameOver gameOver={this.state.gameOver}/>}
                 {this.state.gyroFail ? <GyroFail gyroFail={this.state.gyroFail} character={this.state.interfacingNode.name}/> : null}

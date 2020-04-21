@@ -3,6 +3,7 @@ import styles from '../CSS/Friend.css';
 const faker = require('faker');
 
 const Friend = ({ location, interaction }) => {
+
     
     const coordinates = {
         x: location[0],
