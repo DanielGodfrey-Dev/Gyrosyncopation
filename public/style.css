@@ -1,3 +1,4 @@
 body {
-    background: url(gyroMatrixBG.jpg) no-repeat center center fixed;
+    background: url(gyroMatrixBG.jpg) no-repeat center fixed;
+    background-size: cover;
 }
