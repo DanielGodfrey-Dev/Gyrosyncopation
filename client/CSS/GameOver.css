@@ -1,0 +1,10 @@
+.gameOver {
+    background: linear-gradient(45deg, rgb(216, 20, 141) 30%, rgb(145, 7, 37) 90%);
+    border: 0;
+    border-radius: 3;
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+    color: black;
+    font-weight: bolder;
+    height: 48;
+    padding: 0 30px;
+}
