@@ -34,9 +34,9 @@ let initialState = {
     //interactive node
     friendNodes: [getRandomLocation()],
     friendNodeStats: {
-        selfNodeProcessor: getRandomStat(),
-        selfNodeRAM: getRandomStat(),
-        selfNodeQuantum: getRandomStat()
+        friendNodeProcessor: getRandomStat(),
+        friendNodeRAM: getRandomStat(),
+        friendNodeQuantum: getRandomStat()
     },
 
     //is interaction possible? with which node?
@@ -70,6 +70,7 @@ class Game extends React.Component {
         this.checkGeoFence();
         this.interfaceStart();
         this.interfaceFinish();
+        console.log(this.state.interfacingNode);
     }
 
 
@@ -135,7 +136,7 @@ class Game extends React.Component {
 
         if (selfNode[0] >= (friendNode[0] - 3) && selfNode[0] <= (friendNode[0] + 3) && selfNode[1] >= (friendNode[1] - 3) && selfNode[1] <= (friendNode[1] + 3) && this.state.interaction === false) {
             console.log('node immersive interfacing initiated...');
-            this.setState({ interaction: true, interfacingNode: friendNode })
+            this.setState({ interaction: true, interfacingNode: this.state.friendNodeStats })
         } 
     }
         

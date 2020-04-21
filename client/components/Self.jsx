@@ -14,9 +14,17 @@ const Self = ({ location, interaction }) => {
         top: `${coordinates.y}%`
     }
 
+    const getGreeting = () => {
+        const greetings = ['hello', 'hi', 'hello my name is selfNode', 'I am lonely', 'I am selfNode'];
+        return greetings[Math.floor(Math.random() * 5)]
+    }
+
+    let greeting = getGreeting();
+
     return (
+
         <div className={interaction ? styles.interface : styles.node} style={style}>
-            {interaction ? <Interface /> : null}
+            {interaction ? <div><Interface /><h3 style={{color: 'white'}}>{greeting}</h3></div> : null}
         </div>
     )
 }

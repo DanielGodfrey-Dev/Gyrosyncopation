@@ -5,6 +5,7 @@
     background-color: hotpink;
     border: 1px solid black;
     z-index: 2;
+    color: white;
 }
 
 .interface {
