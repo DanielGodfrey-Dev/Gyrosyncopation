@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import styles from '../CSS/Interface.css';
-import SendIcon from '@material-ui/icons/Send';
+import KeyboardIcon from '@material-ui/icons/Keyboard';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Fade from '@material-ui/core/Fade';
@@ -24,6 +24,9 @@ export default function Interface() {
     palette: {
       type: 'dark',
     },
+    typography: {
+        fontFamily: "Orbitron, Roboto, sans-serif",
+    }
   });
 
   return (
@@ -45,22 +48,22 @@ export default function Interface() {
 
             <MenuItem className={styles.menu} onClick={handleClose}>
             <ListItemIcon className={styles.enquire}>
-                <SendIcon fontSize="inherit" />
+                <KeyboardIcon fontSize="large" />
             <ListItemText primary="name.enquire()" />
             </ListItemIcon>
             </MenuItem>
 
             <MenuItem onClick={handleClose}>
             <ListItemIcon className={styles.JSON}>
-                <SendIcon fontSize="inherit" />
+                <KeyboardIcon fontSize="large" />
             <ListItemText primary="JSONbrain.scan()" />
             </ListItemIcon>
             </MenuItem>
 
             <MenuItem onClick={handleClose}>
             <ListItemIcon className={styles.attemptGyro}>
-                <SendIcon fontSize="inherit" />
-            <ListItemText primary="ATTEMPT GYROSYNCOPATION" />
+                <KeyboardIcon fontSize="large" />
+            <ListItemText primary="GYROSYNC.try()" />
             </ListItemIcon>
             </MenuItem>
 

@@ -4,6 +4,8 @@ import Self from './Self.jsx';
 import Friend from './Friend.jsx';
 import GameOver from './GameOver.jsx';
 
+
+
 const getRandomLocation = () => {
 
     let min = 0;
@@ -137,9 +139,6 @@ class Game extends React.Component {
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
                 <GameOver gameOver={this.state.gameOver}/>
             </div>
-
-           
-          
         )
     }
 
