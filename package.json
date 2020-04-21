@@ -43,6 +43,8 @@
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.2",
+    "faker": "^4.1.0",
+    "file-loader": "^6.0.0",
     "nodemon": "^2.0.3",
     "style-loader": "^1.1.4",
     "url-loader": "^4.1.0",

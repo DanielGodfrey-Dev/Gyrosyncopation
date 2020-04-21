@@ -1,0 +1,10 @@
+.nameReveal {
+    background: linear-gradient(45deg, rgb(90, 216, 189) 30%, rgb(231, 214, 218) 90%);
+    border: 0;
+    border-radius: 3;
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+    color: black;
+    font-weight: bolder;
+    height: 48;
+    padding: 0 30px;
+}
