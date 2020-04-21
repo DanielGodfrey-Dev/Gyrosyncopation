@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../CSS/Self.css';
 import Interface from './Interface.jsx';
 
-const Self = ({ location, interaction }) => {
+const Self = ({ location, interaction, enquireName }) => {
 
     const coordinates = {
         x: location[0],
@@ -24,7 +24,7 @@ const Self = ({ location, interaction }) => {
     return (
 
         <div className={interaction ? styles.interface : styles.node} style={style}>
-            {interaction ? <div><Interface /><h3 style={{color: 'white'}}>{greeting}</h3></div> : null}
+            {interaction ? <div><Interface enquireName={enquireName}/><h3 style={{color: 'white'}}>{greeting}</h3></div> : null}
         </div>
     )
 }

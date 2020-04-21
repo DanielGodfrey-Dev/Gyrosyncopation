@@ -6,7 +6,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import styles from '../CSS/GameOver.css';
 
-// Create a new theme using Nunito Sans
+// Create a new theme using Orbitron
 const theme = createMuiTheme({
   typography: {
     fontFamily: "Orbitron, Roboto, sans-serif"

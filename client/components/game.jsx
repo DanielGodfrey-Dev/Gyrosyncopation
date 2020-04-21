@@ -3,6 +3,7 @@ import styles from '../CSS/Game.css';
 import Self from './Self.jsx';
 import Friend from './Friend.jsx';
 import GameOver from './GameOver.jsx';
+import FriendName from './FriendName.jsx';
 
 
 const getRandomLocation = () => {
@@ -20,6 +21,14 @@ const getRandomStat = () => {
     return Math.ceil(Math.random() * 6);
 }
 
+let dummyNode = {
+    name: '',
+    nameReveal: false,
+    friendNodeProcessor: null,
+    friendNodeRAM: null,
+    friendNodeQuantum: null
+}
+
 let initialState = {
     keypadDirection: '',
 
@@ -34,14 +43,18 @@ let initialState = {
     //interactive node
     friendNodes: [getRandomLocation()],
     friendNodeStats: {
+        name: 'Kim',
         friendNodeProcessor: getRandomStat(),
         friendNodeRAM: getRandomStat(),
         friendNodeQuantum: getRandomStat()
     },
 
+    nameReveal: false,
+
     //is interaction possible? with which node?
     interaction: false,
-    interfacingNode: null,
+    interfacingNode: dummyNode,
+    nameReveal: false,
 
     gameOver: false
 }
@@ -56,6 +69,7 @@ class Game extends React.Component {
         this.gameOver = this.gameOver.bind(this);
         this.interfaceStart = this.interfaceStart.bind(this);
         this.interfaceFinish = this.interfaceFinish.bind(this);
+        this.enquireName = this.enquireName.bind(this);
     }
 
     componentDidMount() {
@@ -70,7 +84,6 @@ class Game extends React.Component {
         this.checkGeoFence();
         this.interfaceStart();
         this.interfaceFinish();
-        console.log(this.state.interfacingNode);
     }
 
 
@@ -147,10 +160,19 @@ class Game extends React.Component {
         if (((friendNode[0] - 3) > selfNode[0] || (friendNode[0] + 3) < selfNode[0] || (friendNode[1] - 3) > selfNode[1] || (friendNode[1] + 3) < selfNode[1]) && this.state.interaction === true) {
             console.log('node immersive interfacing finished...');
             // this.setState({ selfNode: [friendNode[0] - 5, friendNode[1] - 5] });
-            this.setState({ interaction: false, interfacingNode: null })
+            this.setState({ interaction: false, interfacingNode: dummyNode })
         } 
     }
     //________________...interfacing can initialize or complete_________
+
+    enquireName() {
+        console.log(this.state.interfacingNode.name);
+        this.setState({ nameReveal: true });
+        setTimeout(() => {
+            this.setState({nameReveal: false});
+            this.setState({ friendNodes: [getRandomLocation()]})
+        }, 3000);
+    }
 
     render() {
 
@@ -166,9 +188,10 @@ class Game extends React.Component {
             
             <div id="box" className={styles.gameArea}>
         
-                <Self id='self' location={this.state.selfNode} interaction={this.state.interaction}/>
+                <Self id='self' location={this.state.selfNode} interaction={this.state.interaction} enquireName={this.enquireName}/>
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
-                <GameOver gameOver={this.state.gameOver}/>
+                
+                {this.state.nameReveal ? <FriendName nameReveal={this.state.nameReveal} friendName={this.state.interfacingNode.name}/> : <GameOver gameOver={this.state.gameOver}/>}
 
                 </div>
             </div>

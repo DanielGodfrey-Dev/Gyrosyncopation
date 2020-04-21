@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Fade from '@material-ui/core/Fade';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-export default function Interface() {
+export default function Interface(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -18,6 +18,7 @@ export default function Interface() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    props.enquireName();
   };
 
   const darkTheme = createMuiTheme({
