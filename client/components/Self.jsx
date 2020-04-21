@@ -3,7 +3,7 @@ import styles from '../CSS/Self.css';
 import Interface from './Interface.jsx';
 
 const Self = ({ location, interaction }) => {
-    
+
     const coordinates = {
         x: location[0],
         y: location[1]

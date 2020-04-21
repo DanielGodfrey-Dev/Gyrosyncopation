@@ -5,7 +5,6 @@ import Friend from './Friend.jsx';
 import GameOver from './GameOver.jsx';
 
 
-
 const getRandomLocation = () => {
 
     let min = 0;
@@ -17,12 +16,33 @@ const getRandomLocation = () => {
     return [x, y];
 };
 
+const getRandomStat = () => {
+    return Math.ceil(Math.random() * 6);
+}
+
 let initialState = {
     keypadDirection: '',
+
+    //your node
     selfNode: [0,0],
+    selfNodeStats: {
+        selfNodeProcessor: getRandomStat(),
+        selfNodeRAM: getRandomStat(),
+        selfNodeQuantum: getRandomStat()
+    },
+    
+    //interactive node
     friendNodes: [getRandomLocation()],
-    interfacingNode: null,
+    friendNodeStats: {
+        selfNodeProcessor: getRandomStat(),
+        selfNodeRAM: getRandomStat(),
+        selfNodeQuantum: getRandomStat()
+    },
+
+    //is interaction possible? with which node?
     interaction: false,
+    interfacingNode: null,
+
     gameOver: false
 }
 
@@ -63,13 +83,13 @@ class Game extends React.Component {
     }
 
     gameOver() {
-        this.setState({selfNode: [3, 3]});
+        this.setState({ selfNode: [3, 3] });
         this.setState({ gameOver: true })
         //________________reset game____________________________________
         setTimeout(() => {
         this.setState(initialState);
         this.setState({ friendNodes: [getRandomLocation()]})
-        }, 1700);
+        }, 3000);
         //______________________________________________________________
     }
     //__________________________________________________________________
@@ -134,14 +154,26 @@ class Game extends React.Component {
     render() {
 
         return (
-            <div className={styles.gameArea}>
+            <div>
+
+            <div className={styles.stats}>
+                <h4>selfNode Processor: {this.state.selfNodeStats.selfNodeProcessor}</h4>
+                <h4>selfNode Memory: {this.state.selfNodeStats.selfNodeRAM}</h4>
+                <h4>selfNode Quantum Matrix: {this.state.selfNodeStats.selfNodeQuantum}</h4>
+                <img src='node.png'></img>
+            </div>
+            
+            <div id="box" className={styles.gameArea}>
+        
                 <Self id='self' location={this.state.selfNode} interaction={this.state.interaction}/>
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
                 <GameOver gameOver={this.state.gameOver}/>
+
+                </div>
             </div>
+          
         )
     }
 
 }
-
 export default Game;
