@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 export default function FriendName({ nameReveal, friendName }) {
   let open = nameReveal;
 
-  const getGreeting = () => {
+    const getGreeting = () => {
     const greetings = ['GREETINGS FRIEND', 'I AM FAMILIAR WITH YOU', 'HERE IS MY IDENITY', '...BUT WHO ARE YOU?'];
     return greetings[Math.floor(Math.random() * 4)]
   }

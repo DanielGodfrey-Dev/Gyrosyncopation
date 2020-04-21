@@ -4,6 +4,8 @@ import Self from './Self.jsx';
 import Friend from './Friend.jsx';
 import GameOver from './GameOver.jsx';
 import FriendName from './FriendName.jsx';
+import GyroFail from './GyroFail.jsx';
+import GameWin from './GameWin.jsx';
 
 
 const getRandomLocation = () => {
@@ -56,7 +58,9 @@ let initialState = {
     interfacingNode: dummyNode,
     nameReveal: false,
 
-    gameOver: false
+    gameOver: false,
+    gyroFail: false,
+    gameWin: false
 }
 
 class Game extends React.Component {
@@ -70,6 +74,7 @@ class Game extends React.Component {
         this.interfaceStart = this.interfaceStart.bind(this);
         this.interfaceFinish = this.interfaceFinish.bind(this);
         this.enquireName = this.enquireName.bind(this);
+        this.gyrosyncopate = this.gyrosyncopate.bind(this);
     }
 
     componentDidMount() {
@@ -87,7 +92,7 @@ class Game extends React.Component {
     }
 
 
-    //________________Game Over on Geo Fence Break Logic_______________
+    //_____Game Over on Geo Fence Break Logic or Gyrosyncopation Failure___
     //checks to see if selfNode breaks geofence boundary
     checkGeoFence() {
         let selfNode = this.state.selfNode;
@@ -106,7 +111,31 @@ class Game extends React.Component {
         }, 3000);
         //______________________________________________________________
     }
+
+    //initiates Game Over based on friendNode interaction
+    gyroFail() {
+        this.setState({ selfNode: [3, 3] });
+        this.setState({ gyroFail: true })
+        //________________reset game____________________________________
+        setTimeout(() => {
+        this.setState(initialState);
+        this.setState({ friendNodes: [getRandomLocation()]})
+        }, 10000);
+        //______________________________________________________________
+    }
     //__________________________________________________________________
+
+    //initiates Game Win after successful Gyrosyncopation
+    gameWin() {
+        this.setState({ selfNode: [3, 3] });
+        this.setState({ gameWin: true })
+        //________________reset game____________________________________
+        setTimeout(() => {
+        this.setState(initialState);
+        this.setState({ friendNodes: [getRandomLocation()]})
+        }, 20000);
+        //______________________________________________________________
+    }
 
 
     //_________________Enable control of selfNode through keyboard______
@@ -166,12 +195,43 @@ class Game extends React.Component {
     //________________...interfacing can initialize or complete_________
 
     enquireName() {
-        console.log(this.state.interfacingNode.name);
+        console.log('friendNode has a name: ' + this.state.interfacingNode.name);
         this.setState({ nameReveal: true });
         setTimeout(() => {
             this.setState({nameReveal: false});
             this.setState({ friendNodes: [getRandomLocation()]})
         }, 3000);
+    }
+
+    gyrosyncopate() {
+        let life = true;
+        const selfNodeProcessor = this.state.selfNodeStats.selfNodeProcessor;
+        const selfNodeRAM = this.state.selfNodeStats.selfNodeRAM;
+        const selfNodeQuantum = this.state.selfNodeStats.selfNodeQuantum;
+
+        const friendNodeProcessor = this.state.friendNodeStats.friendNodeProcessor;
+        const friendNodeRAM = this.state.friendNodeStats.friendNodeRAM;
+        const friendNodeQuantum = this.state.friendNodeStats.friendNodeQuantum;
+
+        if (Math.abs(selfNodeProcessor - friendNodeProcessor) >= 3) {
+            life = false;
+            console.log(Math.abs(selfNodeProcessor - friendNodeProcessor));
+        }
+
+        if (Math.abs(selfNodeRAM - friendNodeRAM) >= 3) {
+            life = false;
+        }
+
+        if (Math.abs(selfNodeQuantum - friendNodeQuantum) >= 3) {
+            life = false;
+        }
+
+        console.log(life);
+        if (!life) {
+            this.gyroFail();
+        } else if (life) {
+            this.gameWin();
+        }
     }
 
     render() {
@@ -188,10 +248,18 @@ class Game extends React.Component {
             
             <div id="box" className={styles.gameArea}>
         
-                <Self id='self' location={this.state.selfNode} interaction={this.state.interaction} enquireName={this.enquireName}/>
+                <Self id='self' 
+                location={this.state.selfNode} 
+                interaction={this.state.interaction} 
+                enquireName={this.enquireName}
+                gyrosyncopate={this.gyrosyncopate}
+                />
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
                 
                 {this.state.nameReveal ? <FriendName nameReveal={this.state.nameReveal} friendName={this.state.interfacingNode.name}/> : <GameOver gameOver={this.state.gameOver}/>}
+                {this.state.gyroFail ? <GyroFail gyroFail={this.state.gyroFail} character={this.state.interfacingNode.name}/> : null}
+                {this.state.gameWin ? <GameWin gameWin={this.state.gameWin} character={this.state.interfacingNode.name}/> : null}
+
 
                 </div>
             </div>

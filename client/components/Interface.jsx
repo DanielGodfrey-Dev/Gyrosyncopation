@@ -16,10 +16,26 @@ export default function Interface(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleEnquire = () => {
     setAnchorEl(null);
     props.enquireName();
   };
+
+  const handleGyro = () => {
+    setAnchorEl(null);
+    props.gyrosyncopate();
+  };
+
+  const handleJSON = () => {
+    setAnchorEl(null);
+    // props.gyrosyncopate();
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    // props.gyrosyncopate();
+  };
+
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -47,21 +63,21 @@ export default function Interface(props) {
         >
             Interface Engaged
 
-            <MenuItem className={styles.menu} onClick={handleClose}>
+            <MenuItem className={styles.menu} onClick={handleEnquire}>
             <ListItemIcon className={styles.enquire}>
                 <KeyboardIcon fontSize="large" />
             <ListItemText primary="name.enquire()" />
             </ListItemIcon>
             </MenuItem>
 
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handleJSON}>
             <ListItemIcon className={styles.JSON}>
                 <KeyboardIcon fontSize="large" />
             <ListItemText primary="JSONbrain.scan()" />
             </ListItemIcon>
             </MenuItem>
 
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handleGyro}>
             <ListItemIcon className={styles.attemptGyro}>
                 <KeyboardIcon fontSize="large" />
             <ListItemText primary="GYROSYNC.try()" />

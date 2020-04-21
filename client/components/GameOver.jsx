@@ -26,7 +26,7 @@ export default function GameOver({ gameOver }) {
       >
         <DialogTitle className={styles.gameOver} id="alert-dialog-title">{"SELF-ANNIHILATION"}</DialogTitle>
         <DialogContent className={styles.gameOver}>
-          <DialogContentText className={styles.gameOver} id="alert-dialog-description">
+          <DialogContentText className={styles.gameOver} style={{fontWeight: 'bold'}} id="alert-dialog-description">
             Don't Cross the GeoFence. Results = Deletion from Matrix
           </DialogContentText>
         </DialogContent>
