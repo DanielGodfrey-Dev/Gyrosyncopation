@@ -16,7 +16,7 @@ const Friend = ({ location, interaction }) => {
     }
 
     const getGreeting = () => {
-        const greetings = ['hello', '調子はどうだい？', 'have you seen the mastermind?', 'who are you?', faker.hacker.phrase()];
+        const greetings = ['hello', 'hi', 'have you seen the mastermind?', 'who are you?', faker.hacker.phrase()];
         return greetings[Math.floor(Math.random() * 5)]
     }
 

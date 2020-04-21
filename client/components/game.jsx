@@ -146,7 +146,7 @@ class Game extends React.Component {
         setTimeout(() => {
         this.setState(initialState);
         this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
-        }, 20000);
+        }, 15000);
         //______________________________________________________________
     }
 
@@ -211,7 +211,7 @@ class Game extends React.Component {
         setTimeout(() => {
             this.setState({nameReveal: false});
             this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
-        }, 3000);
+        }, 4000);
     }
 
     gyrosyncopate() {
