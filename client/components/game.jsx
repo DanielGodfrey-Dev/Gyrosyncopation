@@ -61,7 +61,7 @@ class Game extends React.Component {
     }
 
     gameOver() {
-        this.setState(initialState);
+        this.setState({selfNode: [3, 3]});
         this.setState({ gameOver: true })
         //________________reset game____________________________________
         setTimeout(() => {
@@ -137,6 +137,8 @@ class Game extends React.Component {
                 <Friend location={this.state.friendNodes[0]} interaction={this.state.interaction}/>
                 <GameOver gameOver={this.state.gameOver}/>
             </div>
+
+           
           
         )
     }

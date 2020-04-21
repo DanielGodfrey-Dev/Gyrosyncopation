@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../CSS/Self.css';
+import Interface from './Interface.jsx';
 
 const Self = ({ location, interaction }) => {
     
@@ -14,7 +15,9 @@ const Self = ({ location, interaction }) => {
     }
 
     return (
-        <div className={interaction ? styles.interface : styles.node} style={style}></div>
+        <div className={interaction ? styles.interface : styles.node} style={style}>
+            {interaction ? <Interface /> : null}
+        </div>
     )
 }
 
