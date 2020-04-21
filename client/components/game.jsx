@@ -11,6 +11,9 @@ import Cooperation from './Cooperation.jsx';
 
 import axios from 'axios';
 
+const loadStats = () => {
+    
+}
 
 const getRandomLocation = () => {
 
@@ -129,8 +132,22 @@ class Game extends React.Component {
         this.setState({ gameOver: true })
         //________________reset game____________________________________
         setTimeout(() => {
-        this.setState(initialState);
-        this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
+            this.setState(initialState);
+            this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
+            axios.get('/nodes')
+            .then((nodes) => {
+              console.log('data set: ', nodes.data);
+              this.setState({friendNodeStats: nodes.data})
+            })
+            .catch((err) => {
+              console.log('something went awry');
+            })
+            let selfNodeStats = {
+                selfNodeProcessor: getRandomStat(),
+                selfNodeRAM: getRandomStat(),
+                selfNodeQuantum: getRandomStat()
+            }
+            this.setState({selfNodeStats: selfNodeStats})
         }, 3000);
         //______________________________________________________________
     }
@@ -143,6 +160,20 @@ class Game extends React.Component {
         setTimeout(() => {
         this.setState(initialState);
         this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
+        axios.get('/nodes')
+        .then((nodes) => {
+          console.log('data set: ', nodes.data);
+          this.setState({friendNodeStats: nodes.data})
+        })
+        .catch((err) => {
+          console.log('something went awry');
+        })
+        let selfNodeStats = {
+            selfNodeProcessor: getRandomStat(),
+            selfNodeRAM: getRandomStat(),
+            selfNodeQuantum: getRandomStat()
+        }
+        this.setState({selfNodeStats: selfNodeStats})
         }, 10000);
         //______________________________________________________________
     }
@@ -156,6 +187,20 @@ class Game extends React.Component {
         setTimeout(() => {
         this.setState(initialState);
         this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
+        axios.get('/nodes')
+        .then((nodes) => {
+          console.log('data set: ', nodes.data);
+          this.setState({friendNodeStats: nodes.data})
+        })
+        .catch((err) => {
+          console.log('something went awry');
+        })
+        let selfNodeStats = {
+            selfNodeProcessor: getRandomStat(),
+            selfNodeRAM: getRandomStat(),
+            selfNodeQuantum: getRandomStat()
+        }
+        this.setState({selfNodeStats: selfNodeStats})
         }, 15000);
         //______________________________________________________________
     }
@@ -219,6 +264,14 @@ class Game extends React.Component {
         console.log('friendNode has a name: ' + this.state.interfacingNode.name);
         this.setState({ nameReveal: true });
         setTimeout(() => {
+            axios.get('/nodes')
+            .then((nodes) => {
+              console.log('data set: ', nodes.data);
+              this.setState({friendNodeStats: nodes.data})
+            })
+            .catch((err) => {
+              console.log('something went awry');
+            })
             this.setState({nameReveal: false});
             this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 4000);
@@ -258,6 +311,14 @@ class Game extends React.Component {
         this.setState({ JSONremaining: minus, JSONbrain: true });
         console.log(this.state.interfacingNode);
         setTimeout(() => {
+            axios.get('/nodes')
+            .then((nodes) => {
+              console.log('data set: ', nodes.data);
+              this.setState({friendNodeStats: nodes.data})
+            })
+            .catch((err) => {
+              console.log('something went awry');
+            })
             this.setState({JSONbrain: false});
             this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 5000);
@@ -267,6 +328,14 @@ class Game extends React.Component {
         console.log('friendNode has features: ' + this.state.interfacingNode);
         this.setState({ cooperation: true });
         setTimeout(() => {
+            axios.get('/nodes')
+            .then((nodes) => {
+              console.log('data set: ', nodes.data);
+              this.setState({friendNodeStats: nodes.data})
+            })
+            .catch((err) => {
+              console.log('something went awry');
+            })
             this.setState({cooperation: false});
             this.setState({ friendNodes: [getRandomLocation(), getRandomLocation(), getRandomLocation()]})
         }, 5000);
