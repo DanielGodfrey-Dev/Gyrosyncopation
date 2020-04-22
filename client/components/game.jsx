@@ -261,7 +261,6 @@ class Game extends React.Component {
     //________________...interfacing can initialize or complete_________
 
     enquireName() {
-        console.log('friendNode has a name: ' + this.state.interfacingNode.name);
         this.setState({ nameReveal: true });
         setTimeout(() => {
             axios.get('/nodes')
@@ -309,7 +308,6 @@ class Game extends React.Component {
     JSONscan() {
         let minus = this.state.JSONremaining - 1;
         this.setState({ JSONremaining: minus, JSONbrain: true });
-        console.log(this.state.interfacingNode);
         setTimeout(() => {
             axios.get('/nodes')
             .then((nodes) => {
@@ -325,7 +323,6 @@ class Game extends React.Component {
     }
 
     cooperation() {
-        console.log('friendNode has features: ' + this.state.interfacingNode);
         this.setState({ cooperation: true });
         setTimeout(() => {
             axios.get('/nodes')
@@ -352,18 +349,21 @@ class Game extends React.Component {
                 <h4>selfNode Quantum Matrix: {this.state.selfNodeStats.selfNodeQuantum}</h4>
                 <img src='node.png'></img>
             </div>
-            
+
+            <div className={styles.white}>{'gyrosyncopation(selfNode, friendNode, zen)'}</div>
+
             <div id="box" className={styles.gameArea}>
         
                 <Self id='self' 
-                location={this.state.selfNode} 
-                interaction={this.state.interaction} 
-                enquireName={this.enquireName}
-                gyrosyncopate={this.gyrosyncopate}
-                JSONscan={this.JSONscan}
-                JSONremaining={this.state.JSONremaining}
-                cooperation={this.cooperation}
+                    location={this.state.selfNode} 
+                    interaction={this.state.interaction} 
+                    enquireName={this.enquireName}
+                    gyrosyncopate={this.gyrosyncopate}
+                    JSONscan={this.JSONscan}
+                    JSONremaining={this.state.JSONremaining}
+                    cooperation={this.cooperation}
                 />
+
                 {this.state.friendNodes.map((friendNode, i) =>
                 <Friend key={i} location={friendNode} interaction={this.state.interaction}/>)
                 }
@@ -374,12 +374,10 @@ class Game extends React.Component {
                 {this.state.JSONbrain ? <JSONbrain JSONbrain={this.state.JSONbrain} friendName={this.state.interfacingNode}/> : null}
                 {this.state.cooperation ? <Cooperation cooperation={this.state.cooperation} friendName={this.state.interfacingNode}/> : null}
 
-
                 </div>
             </div>
           
         )
     }
-
 }
 export default Game;

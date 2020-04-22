@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 export default function GyroFail({ gyroFail, character }) {
   let open = gyroFail;
 
-  console.log('gyrosyncopated with ' + character);
+  console.log(character);
 
   return (
     <ThemeProvider theme={theme}>

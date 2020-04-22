@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 export default function GameWin({ gameWin, character }) {
   let open = gameWin;
 
-  console.log('gyrosyncopated with ' + character);
+  console.log(character);
 
   return (
     <ThemeProvider theme={theme}>

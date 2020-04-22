@@ -30,15 +30,31 @@ handleError = function(err) {
 }
 
 const names = 
-['Kim ' + faker.hacker.noun(),
-'Bradley ' + faker.hacker.noun(), 
-'Laura ' + faker.hacker.noun(), 
-'Austin ' + faker.hacker.noun(), 
-'Richard ' + faker.hacker.noun(), 
-'Summer ' + faker.hacker.noun(), 
-'Steven ' + faker.hacker.noun(), 
-'Dennis ' + faker.hacker.noun(), 
-'Pete ' + faker.hacker.noun(), 
+['Kim ' + faker.hacker.abbreviation(),
+'Bradley ' + faker.hacker.abbreviation(), 
+'Laura ' + faker.hacker.abbreviation(), 
+'Austin ' + faker.hacker.abbreviation(), 
+'Richard ' + faker.hacker.abbreviation(), 
+'Summer ' + faker.hacker.abbreviation(), 
+'Steven ' + faker.hacker.abbreviation(), 
+'Dennis ' + faker.hacker.abbreviation(), 
+'Jordan ' + faker.hacker.abbreviation(),
+'TJ ' + faker.hacker.abbreviation(), 
+'Alex ' + faker.hacker.abbreviation(), 
+'Michelle ' + faker.hacker.abbreviation(), 
+'Rory ' + faker.hacker.abbreviation(), 
+'Jacky ' + faker.hacker.abbreviation(), 
+'Craig ' + faker.hacker.abbreviation(), 
+'Rodrigo ' + faker.hacker.abbreviation(), 
+'Jon ' + faker.hacker.abbreviation(), 
+'Nicole ' + faker.hacker.abbreviation(), 
+'Kelsey ' + faker.hacker.abbreviation(), 
+'Joel ' + faker.hacker.abbreviation(),
+'Phuc ' + faker.hacker.abbreviation(),
+'Aston ' + faker.hacker.abbreviation(),
+'Yas ' + faker.hacker.abbreviation(),
+'Marcus ' + faker.hacker.abbreviation(),
+'Marvin ' + faker.hacker.abbreviation()
 ]
 
 const getRandomStat = () => {
@@ -54,7 +70,7 @@ populate = function() {
     );
   });
 
-  for (let i = 1; i < 9; i++) {
+  for (let i = 0; i < names.length; i++) {
 
     let node = new Node({
       index: i,

@@ -6,6 +6,11 @@
     border: 1px solid rgb(26, 241, 141);
 }
 
+.white {
+  color: white;
+  letter-spacing: 2px;
+}
+
 
 /* -webkit-animation: line-glitchy 0.3s ease 0.3s infinite;
 animation: line-glitchy 0.3s ease 0.3s infinite; */
